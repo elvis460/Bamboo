@@ -16,3 +16,6 @@
 !/log/.keep
 /tmp
 /config/*.yml
+/public/backend_template
+/public/frontend_template
+/public/my
