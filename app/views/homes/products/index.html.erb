@@ -1,0 +1,56 @@
+<div class="content-area">
+    <!-- PAGE -->
+   
+    <section class="page-section with-sidebar sidebar-right first-section">
+        <div class="container">
+            <section id="content" class="content col-sm-10 col-md-11">
+                <div class="tab-content">
+                    <div id="grid-view" class="tab-pane fade active in" role="tabpanel">
+                        <div class="row thumbnails events">
+                            <% @products.each do |product|%>
+                                <div class="col-md-4 col-sm-6 isotope-item festival">
+                                    <div class="thumbnail no-border no-padding">
+                                        <div class="media">
+                                            <img src="<%=product.attachment.file%>" alt="" style="height:250px;width:auto;border-radius:5%;">
+                                            <div class="caption hovered"></div>
+                                        </div>
+                                        <div class="caption" style="text-align:center">
+                                            <h3 class="caption-title"><%=product.name%></h3>
+                                            <p class="caption-price" style="font-size:18px">$
+                                                <%=product.price%>
+                                            </p>
+                                            <p class="caption-text">
+                                                <%=product.intro%>
+                                            </p>
+                                            <p class="caption-more">
+                                                <button class="btn btn-theme" data-id="<%=product.id%>">放入購物車</button>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <%end%>
+                        </div>
+                    </div>
+            </section>
+            <!-- /Content -->
+            </div>
+    </section>
+    <!-- /PAGE -->
+    </div>
+</div>
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+$('.btn').on('click', function() {
+    $.ajax({
+        method: 'post',
+        url: '<%=backends_carts_add_session_path%>',
+        data: {
+            id: $(this).data('id')
+        },
+        success: function() {
+            alert('已放入購物車');
+        }
+    });
+});
+</script>

@@ -1,0 +1,51 @@
+<aside>
+	<div id="sidebar"  class="nav-collapse ">
+		<!-- sidebar menu start-->
+		<ul class="sidebar-menu" id="nav-accordion">
+			<li>
+				<a href="<%= backends_root_path%>"> <i class="fa fa-dashboard"></i> <span>INDEX</span> </a>
+			</li>
+			<li>
+				<a href="<%= backends_categories_path%>"> <i class="fa fa-star"></i> <span>CATEGORIES</span> </a>
+			</li>
+			<li class="sub-menu">
+				<a href="javascript:;"> <i class="fa fa-star"></i> <span><%= Content.model_name.human %></span> </a>
+				<ul class="sub">
+					<% Content.content_types.keys.each do |k|%>
+					<li>
+						<%= link_to k ,(backends_contents_path(type: k)) %>
+					</li>
+					<% end %>
+				</ul>
+			</li>
+			<li class="sub-menu">
+				<a href="javascript:;"> <i class="fa fa-star"></i> <span><%= Product.model_name.human %></span> </a>
+				<ul class="sub">
+					<li>
+						<%= link_to 'Product' ,(backends_products_path) %>
+					</li>
+				</ul>
+			</li>
+			<li class="sub-menu">
+				<a href="javascript:;"> <i class="fa fa-star"></i> <span><%= Nav.model_name.human %></span> </a>
+				<ul class="sub">
+					<% Nav.nav_types.keys.each do |k|%>
+					<li>
+						<%= link_to(backends_navs_path(type: k)) do %>
+						<i class="fa fa-star"></i><span><%= t(k,scope: [:activerecord, :attributes, :nav, :nav_type]) %></span>
+						<% end %>
+					</li>
+					<% end %>
+				</ul>
+			</li>
+			<li>
+				<a href="#MyModal" data-action="<%= edit_backends_admin_path(id: 1)%>" data-title="編輯使用者"> <i class="fa fa-star"></i> <span>EDIT ADMIN</span> </a>
+			</li>
+			<li>
+				<a href="#MyModal" data-action="<%= edit_backends_system_path(id: 1)%>" data-title="系統設定"> <i class="fa fa-star"></i> <span>EDIT SYSTEM</span> </a>
+			</li>
+
+		</ul>
+		<!-- sidebar menu end-->
+	</div>
+</aside>

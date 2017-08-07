@@ -1,0 +1,4 @@
+<%= form_for @category , :url => {:controller => 'backends/categories', action: :update},:html => {:class => "form-horizontal"} do |b|%>
+<%= token_tag nil %>
+<%= render partial: "/backends/categories/form" %>
+<%end%>
