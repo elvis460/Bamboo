@@ -27,6 +27,9 @@ role :app, %w{deployer@52.64.75.37}
 role :web, %w{deployer@52.64.75.37}
 role :db,  %w{deployer@52.64.75.37}
 
+set :rvm_ruby_version, '2.5.0'
+set :passenger_environment_variables, { :path => '/home/elvis/.rvm/gems/ruby-2.5.0/gems/passenger-5.2.0/bin:$PATH' }
+set :passenger_restart_command, '/home/elvis/.rvm/gems/ruby-2.5.0/gems/passenger-5.2.0/bin/passenger-config restart-app'
 
 # Configuration
 # =============
