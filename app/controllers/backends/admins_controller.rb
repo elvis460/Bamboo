@@ -1,6 +1,7 @@
 class Backends::AdminsController < BackendsController
   skip_before_action :check_login,only: [:login]
   def login
+    @system = System.first
     render layout: false
   end
 

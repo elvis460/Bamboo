@@ -1,155 +1,157 @@
 <form name="af-form" method="post" action="<%=backends_orders_path%>">
-    <%=token_tag nil%>
-        <section class="page-section with-sidebar sidebar-right first-section">
-            <div class="container">
-                <section id="content" class="content col-sm-8 col-md-9">
-                    <div class="tab-content">
-                        <div id="list-view" class="tab-pane fade active in" role="tabpanel">
-                            <div class="thumbnails events vertical">
-                                <%if session[:cart_id]%>
-                                    <% session[:cart_id].each do |cart|%>
-                                        <%product = Product.find(cart[1])%>
-                                            <div>
-                                                <div class="row">
-                                                    <div class="col-md-11 col-sm-11 col-xs-10">
-                                                        <div class="caption">
-                                                            <a href="#" class="pull-right">
-                                                    <button type="button" class="btn btn-danger remove" data-id="<%=product.id%>">
-                                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                                    </button>
-                                                </a>
-                                                            <h1 class="caption-title" style="font-size:25px"><%=product.name%></h1>
-                                                            <h2 class="caption-price" style="font-size:20px">價格：$ <span class="sum_count"id="price_<%=product.id%>" data-price="<%=product.price%>"><%=product.price%></span>
-                                                    </h2>
-                                                            <p class="caption-text">
-                                                                <%=product.intro%>
-                                                            </p>
-                                                            <h4>數量</h4>
-                                                            <select name="order[count][]" class="form-control count_select" data-id="<%=product.id%>" style="height:50px;background:none;border-color:#22313F;color:#22313F">
-                                                                <option value="1" selected="selected">1</option>
-                                                                <%=(2..30).each do |num|%>
-                                                                    <option value="<%=num%>">
-                                                                        <%=num%>
-                                                                    </option>
-                                                                    <%end%>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <input type="hidden" name="order[product_id][]" value="<%=product.id%>">
-                                            <hr class="page-divider half">
-                                            <%end%>
-                                                <%end%>
+  <%=token_tag nil%>
+    <section class="page-section with-sidebar sidebar-right first-section">
+      <div class="container">
+        <section id="content" class="content col-sm-8 col-md-9">
+          <div class="tab-content">
+            <div id="list-view" class="tab-pane fade active in" role="tabpanel">
+              <div class="thumbnails events vertical">
+                <%if session[:cart_id]%>
+                  <% session[:cart_id].each do |cart|%>
+                    <%product = Product.find(cart[1])%>
+                      <div>
+                        <div class="row">
+                          <div class="col-md-11 col-sm-11 col-xs-10">
+                            <div class="caption">
+                              <a href="#" class="pull-right">
+                                <button type="button" class="btn btn-danger remove" data-id="<%=product.id%>">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </button>
+                              </a>
+                              <h1 class="caption-title" style="font-size:25px"><%=product.name%></h1>
+                              <h2 class="caption-price" style="font-size:20px">價格：$   
+                                <span class="sum_count"id="price_<%=product.id%>" data-price="<%=product.price%>"><%=product.price%></span>
+                              </h2>
+                              <p class="caption-text">
+                                <%=product.intro%>
+                              </p>
+                              <h4>數量</h4>
+                              <select name="order[count][]" class="form-control count_select" data-id="<%=product.id%>" style="height:50px;background:none;border-color:#22313F;color:#22313F">
+                                <option value="1" selected="selected">1</option>
+                                <%=(2..30).each do |num|%>
+                                  <option value="<%=num%>">
+                                    <%=num%>
+                                  </option>
+                                  <%end%>
+                              </select>
                             </div>
+                          </div>
                         </div>
-                </section>
-                <!-- /Content -->
-                <aside id="sidebar" class="sideba5 col-sm-5 col-md-3">
-                    <div class="widget">
-                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingOne">
-                                    <h4 class="panel-title">
-                                                <a class="collapsed" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                                    Total
-                                                </a>
-                                            </h4>
-                                </div>
-                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                    <div class="panel-body" style="text-align:center">
-                                        <h4>總金額：＄<span id="totla_price"></span></h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                </aside>
+                      </div>
+                      <input type="hidden" name="order[product_id][]" value="<%=product.id%>">
+                      <hr class="page-divider half">
+                    <%end%>
+                  <%end%>
+                </div>
+              </div>
             </div>
         </section>
-        <section class="page-section color">
-            <div class="container">
-                <!-- Contact form -->
-                <div class="col-sm-5 af-outer af-required">
-                    <div class="form-group af-inner">
-                        <label class="col-lg-5 col-sm-5 control-label" style="font-size:24px">姓名</label>
-                        <input type="text" name="order[name]" value="" size="30" data-toggle="tooltip" class="form-control placeholder" required="">
-                    </div>
+        <!-- /Content -->
+        <aside id="sidebar" class="sideba5 col-sm-5 col-md-3">
+          <div class="widget">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                  <h4 class="panel-title">
+                    <a class="collapsed" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Total
+                    </a>
+                  </h4>
                 </div>
-                <div class="col-sm-5 col-sm-offset-1 af-outer af-required">
-                    <div class="form-group af-inner">
-                        <label class="col-lg-5 col-sm-5 control-label" style="font-size:24px">臉書名</label>
-                        <input type="text" name="order[fb_name]" value="" size="30" data-toggle="tooltip" class="form-control placeholder">
-                    </div>
+                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                  <div class="panel-body" style="text-align:center">
+                    <h4>總金額：＄<span id="totla_price"></span></h4>
+                  </div>
                 </div>
-                <div class="col-sm-5 af-outer af-required">
-                    <div class="form-group af-inner">
-                        <label class="col-lg-5 col-sm-5 control-label" style="font-size:24px">系級</label>
-                        <input type="text" name="order[study_at]" value="" size="30" data-toggle="tooltip" class="form-control placeholder"required="">
-                    </div>
-                </div>
-                <div class="col-sm-5 col-sm-offset-1 af-outer af-required">
-                    <div class="form-group af-inner">
-                        <label class="col-lg-5 col-sm-5 control-label" style="font-size:24px">手機</label>
-                        <input type="text" name="order[phone]" value="" size="30" data-toggle="tooltip" class="form-control placeholder"required="">
-                    </div>
-                </div>
-                <div class="col-sm-5 af-outer af-required col-sm-offset-3">
-                    <div class="form-group af-inner">
-                        <label class="col-lg-5 col-sm-5 control-label" style="font-size:24px">總金額</label>
-                        <input type="text" size="30" data-toggle="tooltip" class="form-control placeholder" id="order_total_price" readonly>
-                    </div>
-                </div>
-                <div class="col-sm-12 af-outer af-required text-center" style="margin-top:15px">
-                    <div class="form-group af-inner">
-                        <input type="submit" name="submit" class="form-button form-button-submit btn btn-theme btn-theme-lg btn-theme-transparent" id="submit_btn" value="確認送出">
-                    </div>
-                </div>
-                <div class="col-sm-12 af-outer af-required text-center" style="margin-top:15px">
-                    <div class="form-group af-inner">
-                        <p style="font-size:24px">預購者請於3/14～3/18至郵局前竹塹週攤位繳費</p>
-                        <p style="font-size:24px">3/25 （五）9:00～18:00 至二宿交誼廳取貨</p>
-                        <p style="font-size:24px">台科竹友會感謝您</p>
-                    </div>
-                </div>
-                <!-- /Contact form -->
+              </div>
             </div>
-        </section>
+          </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+    <section class="page-section color">
+      <div class="container">
+        <!-- Contact form -->
+        <div class="col-sm-5 af-outer af-required">
+          <div class="form-group af-inner">
+            <label class="col-lg-5 col-sm-5 control-label" style="font-size:24px">姓名</label>
+            <input type="text" name="order[name]" value="" size="30" data-toggle="tooltip" class="form-control placeholder" required="">
+          </div>
+        </div>
+        <div class="col-sm-5 col-sm-offset-1 af-outer af-required">
+          <div class="form-group af-inner">
+            <label class="col-lg-5 col-sm-5 control-label" style="font-size:24px">臉書名</label>
+            <input type="text" name="order[fb_name]" value="" size="30" data-toggle="tooltip" class="form-control placeholder">
+          </div>
+        </div>
+        <div class="col-sm-5 af-outer af-required">
+          <div class="form-group af-inner">
+            <label class="col-lg-5 col-sm-5 control-label" style="font-size:24px">系級</label>
+            <input type="text" name="order[study_at]" value="" size="30" data-toggle="tooltip" class="form-control placeholder" required="">
+          </div>
+        </div>
+        <div class="col-sm-5 col-sm-offset-1 af-outer af-required">
+          <div class="form-group af-inner">
+            <label class="col-lg-5 col-sm-5 control-label" style="font-size:24px">手機</label>
+            <input type="text" name="order[phone]" value="" size="30" data-toggle="tooltip" class="form-control placeholder" required="">
+          </div>
+        </div>
+        <div class="col-sm-5 af-outer af-required col-sm-offset-3">
+          <div class="form-group af-inner">
+            <label class="col-lg-5 col-sm-5 control-label" style="font-size:24px">總金額</label>
+            <input type="text" size="30" data-toggle="tooltip" class="form-control placeholder" id="order_total_price" readonly>
+          </div>
+        </div>
+        <div class="col-sm-12 af-outer af-required text-center" style="margin-top:15px">
+          <div class="form-group af-inner">
+            <input type="submit" name="submit" class="form-button form-button-submit btn btn-theme btn-theme-lg btn-theme-transparent" id="submit_btn" value="確認送出">
+          </div>
+        </div>
+        <div class="col-sm-12 af-outer af-required text-center" style="margin-top:15px">
+          <div class="form-group af-inner">
+            <p style="font-size:24px">預購者請於3/14～3/18至郵局前竹塹週攤位繳費</p>
+            <p style="font-size:24px">3/25 （五）9:00～18:00 至二宿交誼廳取貨</p>
+            <p style="font-size:24px">台科竹友會感謝您</p>
+          </div>
+        </div>
+        <!-- /Contact form -->
+      </div>
+    </section>
 </form>
 <script>
 function sum() {
-    var sum = 0;
-    $('.sum_count').each(function() {
-        sum += parseInt($(this).text()); //Or this.innerHTML, this.innerText
-    });
-    $('#totla_price').text(sum);
-    $('#order_total_price').val(sum);
+  var sum = 0;
+  $('.sum_count').each(function() {
+    sum += parseInt($(this).text()); //Or this.innerHTML, this.innerText
+  });
+  $('#totla_price').text(sum);
+  $('#order_total_price').val(sum);
 }
 $(document).ready(function() {
-    sum();
+  sum();
 });
 $('.remove').on('click', function() {
-    $.ajax({
-        method: 'post',
-        url: '<%=backends_carts_delete_session_path%>',
-        data: {
-            id: $(this).data('id')
-        },
-        success: function(data) {
-            setTimeout(
-                function() {
-                    location.reload();
-                }, 0001);
-            sum();
-        },
-    });
+  $.ajax({
+    method: 'post',
+    url: '<%=backends_carts_delete_session_path%>',
+    data: {
+      id: $(this).data('id')
+    },
+    success: function(data) {
+      setTimeout(
+        function() {
+          location.reload();
+        }, 0001);
+      sum();
+    },
+  });
 });
 
 $('.count_select').on('change', function() {
-    var price_id = "#price_" + $(this).data('id');
-    var count = $(this).val();
-    $(price_id).text(parseInt($(price_id).data('price')) * parseInt(count));
-    sum();
+  var price_id = "#price_" + $(this).data('id');
+  var count = $(this).val();
+  $(price_id).text(parseInt($(price_id).data('price')) * parseInt(count));
+  sum();
 });
 </script>

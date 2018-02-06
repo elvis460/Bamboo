@@ -1,56 +1,65 @@
 <div class="row">
-	<div class="col-lg-12">
-		<nav class="navbar navbar-inverse" role="navigation">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="fa fa-bars"></span>
-				</button>
-				<a class="navbar-brand" href="#">NAVBAR</a>
-			</div>
-
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse navbar-ex1-collapse">
-				<ul class="nav navbar-nav">
-					<li>
-						<a href="#MyModal" data-action="<%= new_backends_category_path %>" data-title="NEW" >NEW</a>
-					</li>
-
-				</ul>
-			</div><!-- /.navbar-collapse -->
-		</nav>
-	</div>
+  <div class="col-lg-12">
+    <nav class="navbar navbar-inverse" role="navigation">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="fa fa-bars"></span>
+        </button>
+        <a class="navbar-brand" href="#">NAVBAR</a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="#MyModal" data-action="<%= new_backends_category_path %>" data-title="NEW">NEW</a>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+  </div>
 </div>
 <div class="row">
-	<div class="col-lg-12">
-		<section class="panel">
-			<header class="panel-heading">
-				CATEGORY
-			</header>
-			<div class="table-responsive">
-				<table class="table table-bordered table-advance table-hover text-center">
-					<thead>
-						<tr>
-							<th class="text-center col-lg-1">#</th>
-							<th class="text-center col-lg-4">NAME</th>
-							<th class="text-center col-lg-4">PROJECTS</th>
-							<th class="text-center col-lg-1"></th>
-						</tr>
-					</thead>
-					<tbody class="sortable_items" data-url="/backends/categories/sort">
-						<% @categories.each do |c| %>
-						<tr data-item="<%= c.id %>">
-							<td><%= c.id %></td>
-							<td><%= c.name %></td>
-							<td><%if c.contents.present?%><%= c.contents.project.count %><%end%></td>
-							<td><a href="#MyModal" data-action="<%= edit_backends_category_path(id: c.id)%>" data-title="EDIT" class="btn btn-block btn-sm btn-warning"><i class="fa fa-pencil"></i> </a> <%= link_to(backends_category_path(id: c.id),class: "btn btn-block btn-sm btn-danger", method: :delete,data:{confirm: "Are You sure?"}) do %><i class="fa fa-trash-o"></i><% end %> </td>
-						</tr>
-						<% end %>
-					</tbody>
-				</table>
-			</div>
-		</section>
-	</div>
+  <div class="col-lg-12">
+    <section class="panel">
+      <header class="panel-heading">
+        CATEGORY
+      </header>
+      <div class="table-responsive">
+        <table class="table table-bordered table-advance table-hover text-center">
+          <thead>
+            <tr>
+              <th class="text-center col-lg-1">#</th>
+              <th class="text-center col-lg-4">NAME</th>
+              <th class="text-center col-lg-4">PROJECTS</th>
+              <th class="text-center col-lg-1"></th>
+            </tr>
+          </thead>
+          <tbody class="sortable_items" data-url="/backends/categories/sort">
+            <% @categories.each do |c| %>
+              <tr data-item="<%= c.id %>">
+                <td>
+                  <%= c.id %>
+                </td>
+                <td>
+                  <%= c.name %>
+                </td>
+                <td>
+                  <%if c.contents.present?%>
+                    <%= c.contents.project.count %>
+                      <%end%>
+                </td>
+                <td><a href="#MyModal" data-action="<%= edit_backends_category_path(id: c.id)%>" data-title="EDIT" class="btn btn-block btn-sm btn-warning"><i class="fa fa-pencil"></i> </a>
+                  <%= link_to(backends_category_path(id: c.id),class: "btn btn-block btn-sm btn-danger", method: :delete,data:{confirm: "Are You sure?"}) do %><i class="fa fa-trash-o"></i>
+                    <% end %>
+                </td>
+              </tr>
+              <% end %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
 </div>
-

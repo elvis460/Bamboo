@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-
+  resources 'homes',only: [:index]
+    root 'homes#index'
+  namespace :homes do
+    get 'products/cart'
+    get 'products/order_build'
+    resources 'products'
+  end
+  
   resources 'backends',only: [:index]
   namespace :backends do
     root to: 'backends#index'
@@ -13,8 +20,6 @@ Rails.application.routes.draw do
     resources :products
     resources :contents
     resources :categories
-    post 'carts/add_session'
-    post 'carts/delete_session'
     resources :orders
     resources :attachments do
       collection do
@@ -28,14 +33,7 @@ Rails.application.routes.draw do
         post :sort
       end
     end
-
-  end
-  get 'homes/map_view'
-  resources 'homes',only: [:index]
-    root 'homes#index'
-  namespace :homes do
-    get 'products/cart'
-    get 'products/order_build'
-    resources 'products'
+    post 'carts/add_session'
+    post 'carts/delete_session'
   end
 end

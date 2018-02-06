@@ -1,6 +1,6 @@
 <%= form_for @nav , :url => {:controller => 'backends/navs'},:html => {:class => "form-horizontal"} do |b|%>
-<%= token_tag nil %>
-<input type="hidden" name="nav[parent_id]" value="<%= params[:parent_id] %>" />
-<input type="hidden" name="nav[nav_type]" value="<%= params[:type] %>"  />
-<%= render partial: "/backends/navs/form" %>
+  <%= token_tag nil %>
+  <input type="hidden" name="nav[parent_id]" value="<%= params[:parent_id] %>" />
+  <input type="hidden" name="nav[nav_type]" value="<%= params[:type] %>" />
+  <%= render partial: "/backends/navs/form" %>
 <%end%>
