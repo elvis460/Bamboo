@@ -1,5 +1,5 @@
 class Content < ActiveRecord::Base
-  scope :mark,-> {where(del_mark: false).order('rank')}
+  scope :mark,-> {where(del_mark: false).includes(:attachments).order('rank')}
 
   has_many :attachments,-> {mark}, :as => :attachmenttable
   has_one :attachment,-> {mark}, :as => :attachmenttable

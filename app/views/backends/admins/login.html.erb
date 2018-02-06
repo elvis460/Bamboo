@@ -7,7 +7,7 @@
 		<meta name="author" content="Mosaddek">
 		<link rel="shortcut icon" href="">
 
-		<title>Fairhoster</title>
+		<title><%=@system.name%></title>
 
 		<!-- Bootstrap core CSS -->
 		<link href="/backend_template/css/bootstrap.min.css" rel="stylesheet">
@@ -30,12 +30,12 @@
 
 			<form class="form-signin" action="<%= backends_sessions_path%>" method="post">
 				<%= token_tag nil %>
-				<h2 class="form-signin-heading">登入</h2>
+				<h2 class="form-signin-heading"><%=@system.name%> Backend System</h2>
 				<div class="login-wrap">
 					<input type="text" name="account" class="form-control" >
 					<input type="password" name="password" class="form-control" >
 					<button class="btn btn-lg btn-login btn-block" type="submit">
-						登入
+						Login
 					</button>
 				</div>
 			</form>

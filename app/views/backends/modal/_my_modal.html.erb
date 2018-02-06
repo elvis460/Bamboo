@@ -1,37 +1,36 @@
 <div class="modal fade " id="MyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-					×
-				</button>
-				<h4 class="modal-title"></h4>
-			</div>
-			<div class="modal-body">
-
-			</div>
-			<div class="modal-footer">
-				<button data-dismiss="modal" class="btn btn-default" type="button">
-					關閉
-				</button>
-			</div>
-		</div>
-	</div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          ×
+        </button>
+        <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button data-dismiss="modal" class="btn btn-default" type="button">
+          關閉
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
 <script>
-	//呼叫 Modal
-	$("a[href='#MyModal']").click(function() {
-		console.log('ok');
-		var title = $(this).data('title');
-		var action = $(this).data('action');
-		var current_action = $("#MyModal").data('action');
-		if (current_action == action) {
-			$("#MyModal").modal('show')
-			return
-		}
-		$("#MyModal").data('action', action)
-		$("#MyModal .modal-title").text(title);
-		$("#MyModal .modal-body").load(action);
-		$("#MyModal").modal('show')
-	})
+//呼叫 Modal
+$("a[href='#MyModal']").click(function() {
+  console.log('ok');
+  var title = $(this).data('title');
+  var action = $(this).data('action');
+  var current_action = $("#MyModal").data('action');
+  if (current_action == action) {
+    $("#MyModal").modal('show')
+    return
+  }
+  $("#MyModal").data('action', action)
+  $("#MyModal .modal-title").text(title);
+  $("#MyModal .modal-body").load(action);
+  $("#MyModal").modal('show')
+})
 </script>

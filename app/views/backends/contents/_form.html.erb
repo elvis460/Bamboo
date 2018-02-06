@@ -1,63 +1,70 @@
 <div class="form-group" style="display: none">
-	<label class="col-lg-3 col-sm-3 control-label">CATEGORY</label>
-	<div class="col-lg-9">
-		<select name="content[content_type]" class="form-control">
-			<% @content.collection_content_type.each do |v| %>
-			<option value="<%= v %>" <%= selected(@content.content_type,v) %>><%= v %></option>
-			<% end %>
-		</select>
-	</div>
+  <label class="col-lg-3 col-sm-3 control-label">CATEGORY</label>
+  <div class="col-lg-9">
+    <select name="content[content_type]" class="form-control">
+      <% @content.collection_content_type.each do |v| %>
+        <option value="<%= v %>" <%=s elected(@content.content_type,v) %>>
+          <%= v %>
+        </option>
+        <% end %>
+    </select>
+  </div>
 </div>
 <% if @content.content_type == "project"%>
-<div class="form-group" >
-	<label class="col-lg-3 col-sm-3 control-label">CATEGORY</label>
-	<div class="col-lg-9">
-		<select name="content[category_id]" class="form-control">
-			<% @categories.each do |c| %>
-			<option value="<%= c.id %>" <%= selected(@content.category_id,c.id) %>><%= c.name %></option>
-			<% end %>
-		</select>
-	</div>
-</div>
-<% end %>
-<div class="form-group">
-	<label class="col-lg-3 col-sm-3 control-label">TITLE</label>
-	<div class="col-lg-9">
-		<input type="text" class="form-control" name="content[title]" value="<%= @content.title %>" />
-	</div>
-</div>
-<% if @content.content_type == "project"%>
-<div class="form-group">
-	<label class="col-lg-3 col-sm-3 control-label">INTRO</label>
-	<div class="col-lg-9">
-		<input type="text" class="form-control" name="content[intro]" value="<%= @content.intro %>" />
-	</div>
-</div>
-<% end %>
-<div class="form-group">
-	<label class="col-lg-3 col-sm-3 control-label">CONTENT</label>
-	<div class="col-lg-9">
-		<script type="text/javascript" src="/my/plugin/ckeditor/ckeditor.js"></script>
-		<script src="/my/plugin/ckeditor/playplus_ckeditor.js"></script>
-		<textarea id="ckeditor" class="form-control"  name="content[content]"><%= @content.content %></textarea>
-
-		<script type="text/javascript">
-			CKEDITOR.replace('ckeditor', {
-				filebrowserUploadUrl : '/backends/attachments/ck_upload',
-			});
-		</script>
-	</div>
-</div>
-<div class="form-group">
-	<label class="col-lg-3 col-sm-3 control-label">建議尺寸</label>
-	<label class="col-lg-9 col-sm-9 control-label"><%= @content.attachment_size %></label>
-</div>
-<% @attachments = @content.attachments %>
-<%= render partial: "/backends/attachments/attachment" %>
-<div class="form-group">
-	<div class="col-lg-12">
-		<button class="btn btn-block btn-danger">
-			確認
-		</button>
-	</div>
-</div>
+  <div class="form-group">
+    <label class="col-lg-3 col-sm-3 control-label">CATEGORY</label>
+    <div class="col-lg-9">
+      <select name="content[category_id]" class="form-control">
+        <% @categories.each do |c| %>
+          <option value="<%= c.id %>" <%=s elected(@content.category_id,c.id) %>>
+            <%= c.name %>
+          </option>
+          <% end %>
+      </select>
+    </div>
+  </div>
+  <% end %>
+    <div class="form-group">
+      <label class="col-lg-3 col-sm-3 control-label">TITLE</label>
+      <div class="col-lg-9">
+        <input type="text" class="form-control" name="content[title]" value="<%= @content.title %>" />
+      </div>
+    </div>
+    <% if @content.content_type == "project"%>
+      <div class="form-group">
+        <label class="col-lg-3 col-sm-3 control-label">INTRO</label>
+        <div class="col-lg-9">
+          <input type="text" class="form-control" name="content[intro]" value="<%= @content.intro %>" />
+        </div>
+      </div>
+      <% end %>
+        <div class="form-group">
+          <label class="col-lg-3 col-sm-3 control-label">CONTENT</label>
+          <div class="col-lg-9">
+            <script type="text/javascript" src="/my/plugin/ckeditor/ckeditor.js"></script>
+            <script src="/my/plugin/ckeditor/playplus_ckeditor.js"></script>
+            <textarea id="ckeditor" class="form-control" name="content[content]">
+              <%= @content.content %>
+            </textarea>
+            <script type="text/javascript">
+            CKEDITOR.replace('ckeditor', {
+              filebrowserUploadUrl: '/backends/attachments/ck_upload',
+            });
+            </script>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 col-sm-3 control-label">建議尺寸</label>
+          <label class="col-lg-9 col-sm-9 control-label">
+            <%= @content.attachment_size %>
+          </label>
+        </div>
+        <% @attachments = @content.attachments %>
+          <%= render partial: "/backends/attachments/attachment" %>
+            <div class="form-group">
+              <div class="col-lg-12">
+                <button class="btn btn-block btn-danger">
+                  確認
+                </button>
+              </div>
+            </div>

@@ -1,25 +1,25 @@
 <header class="header white-bg">
-	<div class="sidebar-toggle-box">
-		<div data-original-title="Toggle Navigation" data-placement="right" class="fa fa-bars tooltips"></div>
-	</div>
-	<!--logo start-->
-	<a href="/backends/" class="logo" ><%= @system.name %><span></span></a>
-	<!--logo end-->
-	<div class="nav notify-row" id="top_menu">
-		<!--  notification start -->
-
-	</div>
-	<div class="top-nav ">
-		<ul class="nav pull-right top-menu">
-			<!-- <li>
+  <div class="sidebar-toggle-box">
+    <div data-original-title="Toggle Navigation" data-placement="right" class="fa fa-bars tooltips"></div>
+  </div>
+  <!--logo start-->
+  <a href="/backends/" class="logo">
+    <%= @system.name %><span></span></a>
+  <!--logo end-->
+  <div class="nav notify-row" id="top_menu">
+    <!--  notification start -->
+  </div>
+  <div class="top-nav ">
+    <ul class="nav pull-right top-menu">
+      <!-- <li>
 			<input type="text" class="form-control search" placeholder="Search">
 			</li> -->
-			<!-- user login dropdown start-->
-			<li class="dropdown">
-				<a data-toggle="dropdown" class="dropdown-toggle" href="#"> <span class="username"><%= @system.name %></span> <b class="caret"></b> </a>
-				<ul class="dropdown-menu extended logout">
-					<div class="log-arrow-up"></div>
-					<!-- <li>
+      <!-- user login dropdown start-->
+      <li class="dropdown">
+        <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <span class="username"><%= @system.name %></span> <b class="caret"></b> </a>
+        <ul class="dropdown-menu extended logout">
+          <div class="log-arrow-up"></div>
+          <!-- <li>
 					<a href="/backend/edit"><i class=" fa fa-suitcase"></i><%= yield(:profile) %></a>
 					</li>
 					<li>
@@ -28,16 +28,15 @@
 					<li>
 					<a href="/backend/index"><i class="fa fa-bell-o"></i><%= yield(:notification) %></a>
 					</li> -->
-					<li>
-						<%= link_to '登出' , backends_sessions_path , method: :delete %>
-					</li>
-				</ul>
-			</li>
-
-			<!-- user login dropdown end -->
-			<!-- <li class="sb-toggle-right">
+          <li>
+            <%= link_to '登出' , backends_sessions_path , method: :delete %>
+          </li>
+        </ul>
+      </li>
+      <!-- user login dropdown end -->
+      <!-- <li class="sb-toggle-right">
 			<i class="fa  fa-align-right"></i>
 			</li> -->
-		</ul>
-	</div>
+    </ul>
+  </div>
 </header>

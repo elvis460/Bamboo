@@ -1,65 +1,78 @@
 <div class="row">
-	<div class="col-lg-12">
-		<nav class="navbar navbar-inverse" role="navigation">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="fa fa-bars"></span>
-				</button>
-				<a class="navbar-brand" href="#">NAVBAR</a>
-			</div>
-
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse navbar-ex1-collapse">
-				<ul class="nav navbar-nav">
-					<% if params[:parent_id].present? %>
-					<li>
-						<%= link_to( 'BACK',backends_navs_path(type: params[:type])) %>
-					</li>
-					<% end %>
-					<li>
-						<%= link_to( 'NEW',"#MyModal",data: {action: new_backends_nav_path(type: params[:type],parent_id: params[:parent_id]),title: 'NEW NAV'}) %>
-					</li>
-
-				</ul>
-			</div><!-- /.navbar-collapse -->
-		</nav>
-	</div>
+  <div class="col-lg-12">
+    <nav class="navbar navbar-inverse" role="navigation">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="fa fa-bars"></span>
+        </button>
+        <a class="navbar-brand" href="#">NAVBAR</a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav">
+          <% if params[:parent_id].present? %>
+            <li>
+              <%= link_to( 'BACK',backends_navs_path(type: params[:type])) %>
+            </li>
+            <% end %>
+              <li>
+                <%= link_to( 'NEW',"#MyModal",data: {action: new_backends_nav_path(type: params[:type],parent_id: params[:parent_id]),title: 'NEW NAV'}) %>
+              </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+  </div>
 </div>
 <div class="row">
-	<div class="col-lg-12">
-		<section class="panel">
-			<header class="panel-heading">
-				NAV - <%= params[:type] %>
-			</header>
-			<div class="table-responsive">
-				<table class="table table-bordered table-advance table-hover text-center">
-					<thead>
-						<tr>
-							<th class="text-center col-lg-1">#</th>
-							<th class="text-center col-lg-3">PARENT</th>
-							<th class="text-center col-lg-3">NAME</th>
-							<th class="text-center col-lg-3">URL</th>
-							<th class="text-center col-lg-1"></th>
-						</tr>
-					</thead>
-					<tbody class="sortable_items" data-url="<%= sort_backends_navs_path %>">
-						<% @navs.each do |n| %>
-						<tr data-item="<%= n.id %>">
-							<td> <%= link_to(backends_navs_path(type: n.nav_type,parent_id: n.id),class: "btn btn-block btn-sm btn-success") do %><i class="fa fa-plus"></i> <% end %>
-							<% link_to("#MyModal",class: "btn btn-block btn-sm btn-success",data: {action: new_backends_nav_path(type: params[:type],parent_id: n.id),title: 'NEW NAV'}) do %><i class="fa fa-plus"></i> <% end %></td>
-							<td><%= n.parent.name if n.parent_id.present? %></td>
-							<td><%= n.name %></td>
-							<td><%= n.url %></td>
-							<td> <%= link_to("#MyModal",class: "btn btn-block btn-sm btn-warning",data: {action: edit_backends_nav_path(n),title: 'EDIT NAV'}) do %><i class="fa fa-pencil"></i> <% end %>
-							<%= link_to(backends_nav_path(n),class: "btn btn-block btn-sm btn-danger", method: :delete,data:{confirm: "Are You sure?"}) do %><i class="fa fa-trash-o"></i><% end %> </td>
-						</tr>
-						<% end %>
-					</tbody>
-				</table>
-			</div>
-		</section>
-	</div>
+  <div class="col-lg-12">
+    <section class="panel">
+      <header class="panel-heading">
+        NAV -
+        <%= params[:type] %>
+      </header>
+      <div class="table-responsive">
+        <table class="table table-bordered table-advance table-hover text-center">
+          <thead>
+            <tr>
+              <th class="text-center col-lg-1">#</th>
+              <th class="text-center col-lg-3">PARENT</th>
+              <th class="text-center col-lg-3">NAME</th>
+              <th class="text-center col-lg-3">URL</th>
+              <th class="text-center col-lg-1"></th>
+            </tr>
+          </thead>
+          <tbody class="sortable_items" data-url="<%= sort_backends_navs_path %>">
+            <% @navs.each do |n| %>
+              <tr data-item="<%= n.id %>">
+                <td>
+                  <%= link_to(backends_navs_path(type: n.nav_type,parent_id: n.id),class: "btn btn-block btn-sm btn-success") do %><i class="fa fa-plus"></i>
+                    <% end %>
+                      <% link_to("#MyModal",class: "btn btn-block btn-sm btn-success",data: {action: new_backends_nav_path(type: params[:type],parent_id: n.id),title: 'NEW NAV'}) do %><i class="fa fa-plus"></i>
+                        <% end %>
+                </td>
+                <td>
+                  <%= n.parent.name if n.parent_id.present? %>
+                </td>
+                <td>
+                  <%= n.name %>
+                </td>
+                <td>
+                  <%= n.url %>
+                </td>
+                <td>
+                  <%= link_to("#MyModal",class: "btn btn-block btn-sm btn-warning",data: {action: edit_backends_nav_path(n),title: 'EDIT NAV'}) do %><i class="fa fa-pencil"></i>
+                    <% end %>
+                      <%= link_to(backends_nav_path(n),class: "btn btn-block btn-sm btn-danger", method: :delete,data:{confirm: "Are You sure?"}) do %><i class="fa fa-trash-o"></i>
+                        <% end %>
+                </td>
+              </tr>
+              <% end %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
 </div>
-
